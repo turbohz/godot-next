@@ -215,9 +215,11 @@ var _kill_when_finised := true
 var _parallel := false
 
 # You need to provide SceneTree to be used by the sequence.
-func _init(tree: SceneTree) -> void:
+# You can also provide a pause_mode
+func _init(tree: SceneTree, pause_mode:int = Node.PAUSE_MODE_INHERIT) -> void:
 	_tree = tree
 	_tween = Tween.new()
+	_tween.pause_mode = pause_mode
 	_tween.set_meta("sequence", self)
 	_tree.get_root().call_deferred("add_child", _tween)
 	
